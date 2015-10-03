@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% import "_macros.html" as macros %}
+
+{% block title %}Dadar - q{{ qid }}{% endblock %}
+
+
+{% block page_content %}
+<div class="page-header">
+
+<img src="https://commons.wikimedia.org/w/thumb.php?f=En_siddende_nubier_%28R%C3%B8rbye.jpg&width=400">
+
+
+<table>
+<tr>
+<td>Negative<td> <input id="valence" type="range"/> <td>Positive</tr>
+<tr><td>Dearoused<td> <input id="arousal" type="range"/><td> Aroused</tr>
+<tr>
+<td>Submissive<td> <input id="dominance" type="range"/><td> Dominating</tr>
+</table>
+</div>
+
+{% endblock %}
