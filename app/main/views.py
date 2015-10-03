@@ -34,9 +34,12 @@ def server_shutdown():
 
 @main.route('/', methods=['GET', 'POST'])
 def index():
+    print('index start')
+    
     form = PostForm()
     if current_user.can(Permission.WRITE_ARTICLES) and \
             form.validate_on_submit():
+
         post = Post(body=form.body.data,
                     author=current_user._get_current_object())
         db.session.add(post)
@@ -53,6 +56,7 @@ def index():
         page, per_page=current_app.config['FLASKY_POSTS_PER_PAGE'],
         error_out=False)
     posts = pagination.items
+    print "before render"
     return render_template('index.html', form=form, posts=posts,
                            show_followed=show_followed, pagination=pagination)
 
@@ -67,6 +71,11 @@ def user(username):
     posts = pagination.items
     return render_template('user.html', user=user, posts=posts,
                            pagination=pagination)
+
+
+@main.route('/q/<qid>')
+def q(qid):
+    return render_template('q.html', qid=qid)
 
 
 @main.route('/edit-profile', methods=['GET', 'POST'])
